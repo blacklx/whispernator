@@ -1,44 +1,21 @@
 # Whispernator — Personal DM Translator Bot
 
+A minimal, **DM-focused** translator for Discord. Whispernator runs via **message context menu** commands and replies **ephemerally** (only visible to you) right where you clicked — in **1:1 DMs** and **Group DMs**. No databases, no queues, no server admin features.
 
-A minimal, DM-focused translator bot using **discord.js v14** and **Google Cloud Translate**.
+## Features
+- **Message Context Menu (DMs & GDMs)**
+  - **Translate — My Language**: uses your Discord app language (`interaction.locale`) to pick the target automatically.
+  - **Translate — Choose Language**: shows an ephemeral dropdown of common, **Google-supported** languages.
+- **Private by default**: replies are **ephemeral** via interaction flags, so only you can see them in the same chat.
+- **Clean output**: translation shown as a **boxed code block inside an embed** for readability.
+- **No DB**: uses a tiny **in-memory token store** only to link “Choose Language” selections for a short time.
+- **TypeScript + discord.js v14** with a thin service around **Google Cloud Translation API v3**.
+- **Minimal logging** with pino (no message content written to logs).
 
+## Supported Languages (short list)
+The dropdown only includes languages supported by Google Cloud Translation v3
 
-## Core UX
-- **Context menu commands** on any message:
-- **Translate — My Language**: auto-detects your Discord app language (via `interaction.locale`) and translates the selected message.
-- **Translate — Choose Language**: shows a dropdown of common languages.
-- Replies are **ephemeral where supported** (in guilds). Discord does **not** support ephemeral messages in DMs; in DMs the translation will appear in the DM thread.
-- No queues, no linking, no admin ops.
+Default list in the bot:
+`en, es, pt, fr, de, it, nl, pl, ru, tr, ja, ko, zh, zh-TW, no, da, fi, sv, cs, el, hu, ro, uk, ar, he`
 
-
-## Setup
-1. **Discord application**
-- Create a bot and invite with scopes `bot` and `applications.commands`.
-- For DM usage, permissions are minimal; message content intent helps but the context menu provides content regardless. Enable **Message Content Intent** for best compatibility.
-- Turn on **Enable in DMs** for the app commands.
-2. **Google Cloud**
-- Create a project and enable **Cloud Translation API**.
-- Create a service account with role `Cloud Translation API User` and download the JSON key.
-- Set `GOOGLE_PROJECT_ID` and `GOOGLE_APPLICATION_CREDENTIALS` in your environment.
-3. **Environment**
-- Copy `.env.example` → `.env` and fill the values.
-4. **Install & run**
-```bash
-pnpm i # or npm i / yarn
-pnpm run register # registers global commands
-pnpm run dev # start in watch mode
-# or build & run
-pnpm run build && pnpm start
-```
-
-
-## Notes & Limitations
-- **Ephemeral**: Only works in guilds. Discord does not support ephemeral interaction responses in DMs.
-- **Attachments**: This starter handles only text content. Add OCR if needed.
-- **Locales**: `interaction.locale` maps to Google codes via `utils/languageMap.ts`. Extend as desired.
-- **No DB**: A tiny in-memory store links the select menu to the message text; it auto-sweeps.
-
-
-## File map
-See the repository tree at the top of this document for the full layout.
+> You can customize the list in `src/utils/languageMap.ts`.
