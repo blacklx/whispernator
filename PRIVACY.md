@@ -56,4 +56,4 @@ Whispernator is a personal translator for Discord messages. It works via **messa
 We may update this policy from time to time. Material changes will be highlighted in the repository changelog.
 
 ## Contact
-Questions or requests: **your-email@example.com**
+Questions or requests: Contact developer
