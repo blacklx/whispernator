@@ -54,4 +54,4 @@ These Terms are governed by the laws of **[Your Country/Region]** without regard
 We may modify these Terms. Material changes will be noted in the repository changelog. Your continued use after changes become effective constitutes acceptance.
 
 ## 15) Contact
-Questions about these Terms: **your-email@example.com**
+Questions about these Terms: Contact developer
